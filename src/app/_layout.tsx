@@ -6,7 +6,9 @@ import '@/global.css'
 export default function RootLayout() {
     return (
         <GluestackUIProvider>
-            <Stack screenOptions={{ headerShown: false }} />
+            <Stack screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="(root)/main-screen" />
+            </Stack>
         </GluestackUIProvider>
     )
 }

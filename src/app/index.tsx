@@ -1,18 +1,5 @@
-import { Text } from '@/components/ui/text'
-import { StyleSheet, View } from 'react-native'
+import { Redirect } from 'expo-router'
 
 export default function Index() {
-    return (
-        <View style={styles.container}>
-            <Text>Edit src/app/index.tsx to edit this screen.</Text>
-        </View>
-    )
+    return <Redirect href="/(root)/main-screen" />
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-})

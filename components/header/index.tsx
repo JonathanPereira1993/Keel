@@ -1,17 +1,20 @@
 import { Text } from '@/components/ui/text'
-import { StyleSheet } from 'react-native'
+import { Box } from '../ui/box'
+import { Button } from '../ui/button'
 import { HStack } from '../ui/hstack'
 
-type Props = {}
-
-const index = (props: Props) => {
+const Header = () => {
     return (
-        <HStack>
-            <Text>index</Text>
+        <HStack space="md" className="justify-between items-center">
+            <Box>
+                <Text>Header</Text>
+                <Text>Good morning, Jonathan</Text>
+            </Box>
+            <Box>
+                <Button variant="ghost"></Button>
+            </Box>
         </HStack>
     )
 }
 
-export default index
-
-const styles = StyleSheet.create({})
+export default Header
