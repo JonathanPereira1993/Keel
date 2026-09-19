@@ -9,6 +9,7 @@
     "@gluestack-ui/utils": "^5.0.6",
     "@legendapp/motion": "^2.5.3",
     "expo": "~57.0.24",
+    "expo-build-properties": "~57.0.21",
     "expo-constants": "~57.0.19",
     "expo-dev-client": "~57.0.19",
     "expo-device": "~57.0.2",
@@ -42,14 +43,16 @@
     "@tailwindcss/postcss": "^4.3.3",
     "@types/react": "~19.2.2",
     "babel-plugin-module-resolver": "^5.0.3",
+    "eslint": "^9.0.0",
+    "eslint-config-expo": "~57.0.2",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.3"
   },
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web",
     "lint": "expo lint"
   },
