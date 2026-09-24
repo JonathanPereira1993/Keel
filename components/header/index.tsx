@@ -8,8 +8,10 @@ const Header = () => {
     return (
         <HStack space="md" className="justify-between items-center">
             <Box>
-                <Text className="text-base font-light">Header</Text>
-                <Text className="text-lg font-bold">
+                <Text className="text-muted-foreground text-base font-normal">
+                    Header
+                </Text>
+                <Text className="text-foreground text-[19px] font-semibold">
                     Good morning, Jonathan
                 </Text>
             </Box>
