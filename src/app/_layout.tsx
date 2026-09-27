@@ -11,7 +11,7 @@ export default function RootLayout() {
                     headerShown: false,
                 }}
             >
-                <Stack.Screen name="(root)/main-screen" />
+                <Stack.Screen name="(root)" />
             </Stack>
         </GluestackUIProvider>
     )
