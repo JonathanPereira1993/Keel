@@ -8,8 +8,16 @@ import { HStack } from '../ui/hstack'
 
 // Mirrors --foreground / --muted-foreground / --primary-foreground in global.css (icons need a color prop, not a class)
 const ICON_COLORS = {
-    light: { active: 'rgb(10 10 10)', inactive: 'rgb(115 115 115)', onPrimary: 'rgb(250 250 250)' },
-    dark: { active: 'rgb(250 250 250)', inactive: 'rgb(161 161 161)', onPrimary: 'rgb(23 23 23)' },
+    light: {
+        active: 'rgb(10 10 10)',
+        inactive: 'rgb(115 115 115)',
+        onPrimary: 'rgb(250 250 250)',
+    },
+    dark: {
+        active: 'rgb(250 250 250)',
+        inactive: 'rgb(161 161 161)',
+        onPrimary: 'rgb(23 23 23)',
+    },
 }
 
 const FAB_SIZE = 64
@@ -18,7 +26,12 @@ type TabBarProps = BottomTabBarProps & {
     onAddPress?: () => void
 }
 
-const TabBar = ({ state, descriptors, navigation, onAddPress }: TabBarProps) => {
+const TabBar = ({
+    state,
+    descriptors,
+    navigation,
+    onAddPress,
+}: TabBarProps) => {
     const insets = useSafeAreaInsets()
     const colors = ICON_COLORS[useColorScheme() === 'dark' ? 'dark' : 'light']
 
@@ -71,10 +84,14 @@ const TabBar = ({ state, descriptors, navigation, onAddPress }: TabBarProps) => 
             style={{ paddingBottom: insets.bottom }}
         >
             <HStack className="items-center pt-3">
-                {state.routes.slice(0, middle).map((route, i) => renderTab(route, i))}
+                {state.routes
+                    .slice(0, middle)
+                    .map((route, i) => renderTab(route, i))}
                 {/* Keeps space for the floating button */}
                 <View style={{ width: FAB_SIZE + 16 }} />
-                {state.routes.slice(middle).map((route, i) => renderTab(route, i + middle))}
+                {state.routes
+                    .slice(middle)
+                    .map((route, i) => renderTab(route, i + middle))}
             </HStack>
 
             <Pressable
@@ -86,7 +103,7 @@ const TabBar = ({ state, descriptors, navigation, onAddPress }: TabBarProps) => 
                     top: -FAB_SIZE / 2,
                     width: FAB_SIZE,
                     height: FAB_SIZE,
-                    boxShadow: '0 6px 16px rgba(0, 0, 0, 0.15)',
+                    boxShadow: '0 6px 16px rgba(0, 0, 0, 0.05)',
                 }}
             >
                 <Plus color={colors.onPrimary} size={28} />

@@ -1,18 +1,25 @@
-import { Stack } from 'expo-router'
-
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider'
-import '@/global.css'
+import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router'
+import { useColorScheme } from 'react-native'
+
+const BACKGROUND = { light: '#FAFAF8', dark: 'rgb(10 10 10)' } // mirrors --background
 
 export default function RootLayout() {
+    const scheme = useColorScheme() === 'dark' ? 'dark' : 'light'
+    const base = scheme === 'dark' ? DarkTheme : DefaultTheme
+
     return (
         <GluestackUIProvider>
-            <Stack
-                screenOptions={{
-                    headerShown: false,
+            <ThemeProvider
+                value={{
+                    ...base,
+                    colors: { ...base.colors, background: BACKGROUND[scheme] },
                 }}
             >
-                <Stack.Screen name="(root)" />
-            </Stack>
+                <Stack screenOptions={{ headerShown: false }}>
+                    <Stack.Screen name="(root)" />
+                </Stack>
+            </ThemeProvider>
         </GluestackUIProvider>
     )
 }
