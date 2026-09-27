@@ -1,5 +1,5 @@
 import { Text } from '@/components/ui/text'
-import { Search } from 'lucide-react-native'
+import { Bell, Search } from 'lucide-react-native'
 import { Box } from '../ui/box'
 import { Button } from '../ui/button'
 import { HStack } from '../ui/hstack'
@@ -25,11 +25,15 @@ const Header = () => {
                     Olá, Jonathan
                 </Text>
             </Box>
-            <Box>
+            <HStack space="md">
                 <Button className="w-9 h-9 rounded-lg" variant="secondary">
                     <Search className="h-3 w-3" />
                 </Button>
-            </Box>
+
+                <Button className="w-9 h-9 rounded-lg" variant="secondary">
+                    <Bell className="h-3 w-3" />
+                </Button>
+            </HStack>
         </HStack>
     )
 }
