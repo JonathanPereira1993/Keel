@@ -3,13 +3,22 @@ import { Box } from '../ui/box'
 import { HStack } from '../ui/hstack'
 
 type Props = {
+    leading?: React.ReactNode
     actions?: React.ReactNode
     title?: string
     subtitle?: string
     hasDate?: boolean
+    size?: 'default' | 'large'
 }
 
-const Header = ({ actions, title, subtitle, hasDate = false }: Props) => {
+const Header = ({
+    leading,
+    actions,
+    title,
+    subtitle,
+    hasDate = false,
+    size = 'default',
+}: Props) => {
     const dateFormatter = () => {
         const weekDay = new Date().toLocaleDateString('pt-PT', {
             weekday: 'long',
@@ -22,22 +31,31 @@ const Header = ({ actions, title, subtitle, hasDate = false }: Props) => {
 
     return (
         <HStack space="md" className="justify-between items-center">
-            <Box>
+            {leading}
+            <Box className="flex-1">
                 {hasDate && (
                     <Text className="text-muted-foreground text-base font-normal">
                         {dateFormatter()}
                     </Text>
                 )}
-                {title && (
-                    <Text className="text-foreground text-[19px] font-semibold">
-                        {title}
-                    </Text>
-                )}
-                {subtitle && (
-                    <Text className="text-muted-foreground text-sm font-normal">
-                        {subtitle}
-                    </Text>
-                )}
+                {title &&
+                    (size === 'large' ? (
+                        <Text variant="h1" numberOfLines={1}>
+                            {title}
+                        </Text>
+                    ) : (
+                        <Text className="text-foreground text-[19px] font-semibold">
+                            {title}
+                        </Text>
+                    ))}
+                {subtitle &&
+                    (size === 'large' ? (
+                        <Text className="text-muted-foreground">{subtitle}</Text>
+                    ) : (
+                        <Text className="text-muted-foreground text-sm font-normal">
+                            {subtitle}
+                        </Text>
+                    ))}
             </Box>
             {actions && <HStack space="md">{actions}</HStack>}
         </HStack>

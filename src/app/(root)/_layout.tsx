@@ -1,4 +1,5 @@
 import TabBar from '@/components/tab-bar'
+import { router } from 'expo-router'
 import { Tabs } from 'expo-router/js-tabs'
 import { House, ListTodo, Lock, User } from 'lucide-react-native'
 
@@ -9,9 +10,7 @@ export default function RootLayout() {
             tabBar={(props) => (
                 <TabBar
                     {...props}
-                    onAddPress={() => {
-                        // TODO: open the "new item" sheet / modal
-                    }}
+                    onAddPress={() => router.push('/new')}
                 />
             )}
         >
@@ -23,7 +22,7 @@ export default function RootLayout() {
                 }}
             />
             <Tabs.Screen
-                name="tasks/index"
+                name="tasks"
                 options={{
                     title: 'Tasks',
                     tabBarIcon: ({ color, size }) => <ListTodo color={color} size={size} />,

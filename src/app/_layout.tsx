@@ -20,6 +20,7 @@ export default function RootLayout() {
             >
                 <Stack screenOptions={{ headerShown: false }}>
                     <Stack.Screen name="(root)" />
+                    <Stack.Screen name="new" options={{ presentation: 'fullScreenModal' }} />
                 </Stack>
             </ThemeProvider>
         </GluestackUIProvider>

@@ -1,24 +1,11 @@
 import { Text } from '@/components/ui/text'
 import type { BottomTabBarProps } from 'expo-router/js-tabs'
 import { Plus } from 'lucide-react-native'
-import { Pressable, useColorScheme, View } from 'react-native'
+import { useThemeColors } from '@/hooks/use-theme-colors'
+import { Pressable, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Box } from '../ui/box'
 import { HStack } from '../ui/hstack'
-
-// Mirrors --foreground / --muted-foreground / --primary-foreground in global.css (icons need a color prop, not a class)
-const ICON_COLORS = {
-    light: {
-        active: 'rgb(10 10 10)',
-        inactive: 'rgb(115 115 115)',
-        onPrimary: 'rgb(250 250 250)',
-    },
-    dark: {
-        active: 'rgb(250 250 250)',
-        inactive: 'rgb(161 161 161)',
-        onPrimary: 'rgb(23 23 23)',
-    },
-}
 
 const FAB_SIZE = 64
 
@@ -33,13 +20,13 @@ const TabBar = ({
     onAddPress,
 }: TabBarProps) => {
     const insets = useSafeAreaInsets()
-    const colors = ICON_COLORS[useColorScheme() === 'dark' ? 'dark' : 'light']
+    const colors = useThemeColors()
 
     const renderTab = (route: (typeof state.routes)[number], index: number) => {
         const { options } = descriptors[route.key]
         const focused = state.index === index
         const label = options.title ?? route.name
-        const color = focused ? colors.active : colors.inactive
+        const color = focused ? colors.foreground : colors.mutedForeground
 
         const onPress = () => {
             const event = navigation.emit({
@@ -106,7 +93,7 @@ const TabBar = ({
                     boxShadow: '0 6px 16px rgba(0, 0, 0, 0.05)',
                 }}
             >
-                <Plus color={colors.onPrimary} size={28} />
+                <Plus color={colors.primaryForeground} size={28} />
             </Pressable>
         </Box>
     )
