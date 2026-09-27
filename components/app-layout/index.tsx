@@ -25,7 +25,7 @@ const AppLayout = ({
             className="flex-1 bg-background px-6"
         >
             {header && <View>{header}</View>}
-            <View>{children}</View>
+            <View className="flex-1 pt-4">{children}</View>
         </View>
     )
 }

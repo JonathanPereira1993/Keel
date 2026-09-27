@@ -1,10 +1,15 @@
 import { Text } from '@/components/ui/text'
-import { Bell, Search } from 'lucide-react-native'
 import { Box } from '../ui/box'
-import { Button } from '../ui/button'
 import { HStack } from '../ui/hstack'
 
-const Header = () => {
+type Props = {
+    actions?: React.ReactNode
+    title?: string
+    subtitle?: string
+    hasDate?: boolean
+}
+
+const Header = ({ actions, title, subtitle, hasDate = false }: Props) => {
     const dateFormatter = () => {
         const weekDay = new Date().toLocaleDateString('pt-PT', {
             weekday: 'long',
@@ -18,22 +23,23 @@ const Header = () => {
     return (
         <HStack space="md" className="justify-between items-center">
             <Box>
-                <Text className="text-muted-foreground text-base font-normal">
-                    {dateFormatter()}
-                </Text>
-                <Text className="text-foreground text-[19px] font-semibold">
-                    Olá, Jonathan
-                </Text>
+                {hasDate && (
+                    <Text className="text-muted-foreground text-base font-normal">
+                        {dateFormatter()}
+                    </Text>
+                )}
+                {title && (
+                    <Text className="text-foreground text-[19px] font-semibold">
+                        {title}
+                    </Text>
+                )}
+                {subtitle && (
+                    <Text className="text-muted-foreground text-sm font-normal">
+                        {subtitle}
+                    </Text>
+                )}
             </Box>
-            <HStack space="md">
-                <Button className="w-9 h-9 rounded-lg" variant="secondary">
-                    <Search className="h-3 w-3" />
-                </Button>
-
-                <Button className="w-9 h-9 rounded-lg" variant="secondary">
-                    <Bell className="h-3 w-3" />
-                </Button>
-            </HStack>
+            {actions && <HStack space="md">{actions}</HStack>}
         </HStack>
     )
 }
