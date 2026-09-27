@@ -4,11 +4,11 @@
     "slug": "Keel",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/keel-app-icon.png",
     "scheme": "keel",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon",
+      "icon": "./assets/keel-app-icon.png",
       "bundleIdentifier": "com.jonathanpereira93.Keel"
     },
     "android": {

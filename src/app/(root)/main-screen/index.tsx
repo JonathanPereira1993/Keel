@@ -1,14 +1,12 @@
+import AppLayout from '@/components/app-layout'
 import Header from '@/components/header'
-import { Box } from '@/components/ui/box'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { Text } from '@/components/ui/text'
 
 const MainScreen = () => {
     return (
-        <SafeAreaView>
-            <Box className="px-4">
-                <Header />
-            </Box>
-        </SafeAreaView>
+        <AppLayout header={<Header />}>
+            <Text>Hello</Text>
+        </AppLayout>
     )
 }
 
