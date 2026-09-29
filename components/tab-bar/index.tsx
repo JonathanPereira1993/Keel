@@ -20,9 +20,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Box } from '../ui/box'
 import { HStack } from '../ui/hstack'
 
-const FAB_SIZE = 64
+const FAB_SIZE = 60
 // How far the button's centre sits below the bar's top edge
-const FAB_DROP = 6
+const FAB_DROP = 4
 
 // iOS 26+ only; older iOS and Android get the solid pill
 const HAS_GLASS = isLiquidGlassAvailable()
@@ -118,7 +118,7 @@ const TabBar = ({
         const { options } = descriptors[route.key]
         const focused = state.index === index
         const label = options.title ?? route.name
-        const color = focused ? colors.brandForeground : colors.mutedForeground
+        const color = focused ? colors.brand : colors.mutedForeground
 
         const onPress = () => {
             const event = navigation.emit({
@@ -153,7 +153,7 @@ const TabBar = ({
                     variant="meta"
                     className={
                         focused
-                            ? 'text-xs text-brand-foreground'
+                            ? 'text-xs text-brand'
                             : 'text-xs text-muted-foreground'
                     }
                 >
@@ -166,7 +166,7 @@ const TabBar = ({
     const middle = Math.ceil(state.routes.length / 2)
 
     const tabs = (
-        <HStack className="items-center p-1">
+        <HStack className="items-center p-2">
             {/* Native/animated views here: styled with `style`, className isn't applied to them */}
             <Animated.View
                 pointerEvents="none"
@@ -184,7 +184,7 @@ const TabBar = ({
                 {HAS_GLASS && (
                     <GlassView
                         glassEffectStyle="clear"
-                        tintColor={colors.brand}
+                        tintColor={colors.brandLight}
                         style={{ flex: 1, borderRadius: 999 }}
                     />
                 )}

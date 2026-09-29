@@ -8,6 +8,7 @@ const THEME_COLORS = {
         primaryForeground: 'rgb(250 250 250)',
         warning: 'rgb(160 101 14)',
         brand: 'rgb(80 95 210)',
+        brandLight: 'rgba(76, 95, 217, 0.20)',
         brandForeground: 'rgb(250 250 250)',
     },
     dark: {
@@ -16,6 +17,7 @@ const THEME_COLORS = {
         primaryForeground: 'rgb(23 23 23)',
         warning: 'rgb(220 168 74)',
         brand: 'rgb(129 140 248)',
+        brandLight: 'rgba(76, 95, 217, 0.12)',
         brandForeground: 'rgb(250 250 250)',
     },
 }
