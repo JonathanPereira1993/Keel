@@ -25,6 +25,9 @@ export const config = {
     "--border": "229 229 229",
     "--input": "229 229 229",
     "--ring": "212 212 212",
+    "--brand": "80 95 210",
+    "--brand-soft": "233 234 248",
+    "--brand-foreground": "250 250 250",
   }),
   dark: vars({
     "--background": "10 10 10",
@@ -50,6 +53,9 @@ export const config = {
     "--border": "46 46 46",
     "--input": "46 46 46",
     "--ring": "115 115 115",
+    "--brand": "129 140 248",
+    "--brand-soft": "38 40 72",
+    "--brand-foreground": "250 250 250",
   }),
 };
 

@@ -28,6 +28,9 @@
         --border: 229 229 229;
         --input: 229 229 229;
         --ring: 212 212 212;
+        --brand: 80 95 210; /* added */
+        --brand-soft: 233 234 248; /* added */
+        --brand-foreground: 250 250 250; /* added */
     }
 
     @media (prefers-color-scheme: dark) {
@@ -55,6 +58,9 @@
             --border: 46 46 46;
             --input: 46 46 46;
             --ring: 115 115 115;
+            --brand: 129 140 248;
+            --brand-soft: 38 40 72;
+            --brand-foreground: 250 250 250;
         }
     }
 }
@@ -83,6 +89,9 @@
     --color-border: rgb(var(--border));
     --color-input: rgb(var(--input));
     --color-ring: rgb(var(--ring));
+    --color-brand: rgb(var(--brand));
+    --color-brand-soft: rgb(var(--brand-soft));
+    --color-brand-foreground: rgb(var(--brand-foreground));
 }
 
 /* Font families: one per weight */

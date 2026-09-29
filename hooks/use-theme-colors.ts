@@ -7,12 +7,16 @@ const THEME_COLORS = {
         mutedForeground: 'rgb(115 115 115)',
         primaryForeground: 'rgb(250 250 250)',
         warning: 'rgb(160 101 14)',
+        brand: 'rgb(80 95 210)',
+        brandForeground: 'rgb(250 250 250)',
     },
     dark: {
         foreground: 'rgb(250 250 250)',
         mutedForeground: 'rgb(161 161 161)',
         primaryForeground: 'rgb(23 23 23)',
         warning: 'rgb(220 168 74)',
+        brand: 'rgb(129 140 248)',
+        brandForeground: 'rgb(250 250 250)',
     },
 }
 

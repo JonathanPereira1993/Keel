@@ -11,6 +11,7 @@ import {
     summarize,
     useResponsibilities,
 } from '@/data/responsibilities'
+import { useTabBarInset } from '@/hooks/use-tab-bar-inset'
 import { useThemeColors } from '@/hooks/use-theme-colors'
 import { router } from 'expo-router'
 import { Calendar, ChevronRight, ListTodo, Search } from 'lucide-react-native'
@@ -18,6 +19,7 @@ import { Pressable, ScrollView } from 'react-native'
 
 const TasksScreen = () => {
     const colors = useThemeColors()
+    const tabBarInset = useTabBarInset()
     const items = useResponsibilities()
     const overall = summarize(items)
 
@@ -54,7 +56,8 @@ const TasksScreen = () => {
         >
             <ScrollView
                 showsVerticalScrollIndicator={false}
-                contentContainerClassName="pt-2 pb-16"
+                contentContainerClassName="pt-2"
+                contentContainerStyle={{ paddingBottom: tabBarInset + 24 }}
             >
                 <Pressable
                     onPress={() => openList()}

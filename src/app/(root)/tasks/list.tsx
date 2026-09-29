@@ -11,6 +11,7 @@ import {
     useResponsibilities,
     type Filter,
 } from '@/data/responsibilities'
+import { useTabBarInset } from '@/hooks/use-tab-bar-inset'
 import { router, useLocalSearchParams } from 'expo-router'
 import { ArrowLeft, Calendar, Search } from 'lucide-react-native'
 import { useState } from 'react'
@@ -33,6 +34,7 @@ const EMPTY_MESSAGES: Record<Filter, string> = {
 const ResponsibilitiesListScreen = () => {
     const { category } = useLocalSearchParams<{ category?: string }>()
     const [filter, setFilter] = useState<Filter>('all')
+    const tabBarInset = useTabBarInset()
     const items = useResponsibilities()
 
     const visible = sortByUrgency(
@@ -73,7 +75,8 @@ const ResponsibilitiesListScreen = () => {
                 keyExtractor={(item) => item.id}
                 showsVerticalScrollIndicator={false}
                 className="mt-4"
-                contentContainerClassName="gap-3 pb-16"
+                contentContainerClassName="gap-3"
+                contentContainerStyle={{ paddingBottom: tabBarInset + 24 }}
                 renderItem={({ item }) => (
                     <ResponsibilityCard
                         item={item}
