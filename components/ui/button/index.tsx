@@ -9,9 +9,30 @@ import {
 } from '@gluestack-ui/utils/nativewind-utils'
 import { styled } from 'nativewind'
 import React from 'react'
-import { ActivityIndicator, Pressable, Text, View } from 'react-native'
+import {
+    ActivityIndicator,
+    Pressable,
+    Text,
+    View,
+    type StyleProp,
+    type ViewStyle,
+} from 'react-native'
+import Animated, {
+    useAnimatedStyle,
+    useSharedValue,
+    withSpring,
+} from 'react-native-reanimated'
+
+// Cast keeps styled() from recursing through Reanimated's animated prop types (TS2589)
+const AnimatedPressableBase = Animated.createAnimatedComponent(
+    Pressable
+) as unknown as typeof Pressable
+const AnimatedPressable = styled(AnimatedPressableBase, {
+    className: 'style',
+})
+
 const SCOPE = 'BUTTON'
-const Root = withStyleContext(Pressable, SCOPE)
+const Root = withStyleContext(AnimatedPressable, SCOPE)
 const StyledUIIcon = styled(UIIcon, {
     className: 'style',
 })
@@ -124,22 +145,58 @@ const buttonGroupStyle = tva({
 })
 type IButtonProps = Omit<
     React.ComponentPropsWithoutRef<typeof UIButton>,
-    'context'
+    'context' | 'style'
 > &
-    VariantProps<typeof buttonStyle> & { className?: string }
+    VariantProps<typeof buttonStyle> & {
+        className?: string
+        // No function styles: they can't be merged with the animated scale style
+        style?: StyleProp<ViewStyle>
+    }
+
 const Button = React.forwardRef<
     React.ElementRef<typeof UIButton>,
     IButtonProps
->(({ className, variant = 'default', size = 'default', ...props }, ref) => {
-    return (
-        <UIButton
-            ref={ref}
-            {...props}
-            className={buttonStyle({ variant, size, class: className })}
-            context={{ variant, size }}
-        />
-    )
-})
+>(
+    (
+        {
+            className,
+            variant = 'default',
+            size = 'default',
+            style,
+            onPressIn,
+            onPressOut,
+            ...props
+        },
+        ref
+    ) => {
+        const scale = useSharedValue(1)
+        // Root is typed as a plain Pressable, so the animated style handle needs a cast
+        const animatedStyle = useAnimatedStyle(() => ({
+            transform: [{ scale: scale.value }],
+        })) as unknown as ViewStyle
+
+        return (
+            <UIButton
+                ref={ref}
+                style={[animatedStyle, style]}
+                onPressIn={(e) => {
+                    scale.value = withSpring(0.96, {
+                        damping: 15,
+                        stiffness: 400,
+                    })
+                    onPressIn?.(e)
+                }}
+                onPressOut={(e) => {
+                    scale.value = withSpring(1, { damping: 15, stiffness: 400 })
+                    onPressOut?.(e)
+                }}
+                {...props}
+                className={buttonStyle({ variant, size, class: className })}
+                context={{ variant, size }}
+            />
+        )
+    }
+)
 type IButtonTextProps = React.ComponentPropsWithoutRef<typeof UIButton.Text> &
     VariantProps<typeof buttonTextStyle> & { className?: string }
 const ButtonText = React.forwardRef<
